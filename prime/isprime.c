@@ -17,7 +17,7 @@ char isprime(int num){
     }
     
     int search_up_to = (int)sqrt(num)+1;
-    for(int i = 11; i < search_up_to; i+=11){
+    for(int i = 11; i < search_up_to; i+=2){
         if(num % i == 0){
             return '0';
         }
