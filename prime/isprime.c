@@ -10,7 +10,7 @@ char isprime(int num){
         return (num == 2 || num == 3 || num == 5 || num == 7) ? '1' : '0';
     }
 
-    // Test if number is divisible by 2
+    // Test if number is divisible by 2,3,5,7
     // This must catch half of the numbers (statistically! depends on input distribution)
     if(!(num & 1) || num % 3 == 0 || num % 5 == 0 || num % 7 == 0){
         return '0';
