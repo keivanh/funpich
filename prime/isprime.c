@@ -1,39 +1,10 @@
-#include <stdio.h>
-#include <math.h>
-#include <string.h>
+#include "primes.h"
 //#include <time.h>
 
-#define BUFFER_LENGTH 2048*32
-
-char isprime(int num){
-    if(num < 11){
-        return (num == 2 || num == 3 || num == 5 || num == 7) ? '1' : '0';
-    }
-
-    // Test if number is divisible by 2,3,5,7
-    // This must catch half of the numbers (statistically! depends on input distribution)
-    if(!(num & 1) || num % 3 == 0 || num % 5 == 0 || num % 7 == 0){
-        return '0';
-    }
-    
-    int search_up_to = (int)sqrt(num)+1;
-    for(int i = 11; i < search_up_to; i+=2){
-        if(num % i == 0){
-            return '0';
-        }
-    }
-
-    return '1';
-}
-
-void print_result(char *buffer, int length){
-    buffer[length] = '\0';
-    printf("%s", buffer);
-}
-
+#define BUFFER_LENGTH 1024*64
 
 int main(int argc, char *argv[]){
-    //clock_t begin = clock();
+  //  clock_t begin = clock();
 
     FILE* input = fopen(argv[1], "r");
     int i = 0;
@@ -60,7 +31,34 @@ int main(int argc, char *argv[]){
     }
 
     fclose (input);
-    //printf("Total time %f\n", (double)(clock() - begin)/ CLOCKS_PER_SEC);
+   // printf("Total time %f\n", (double)(clock() - begin)/ CLOCKS_PER_SEC);
     return 0;
+}
+
+char isprime(int num){
+    // Test if number is divisible by 2
+    // This must catch half of the numbers (statistically! depends on input distribution)
+    if(!(num & 1) ){
+        return num == 2 ? '1':'0';
+    }
+    
+    int search_up_to = (int)sqrt(num);
+    int search_index = 0;
+    int c_prime_number = primes[search_index];
+
+    while(c_prime_number <= search_up_to && c_prime_number != num){
+        if(num % primes[search_index] == 0){
+            return '0';
+        }
+        search_index++;
+        c_prime_number = primes[search_index];
+    }
+
+    return '1';
+}
+
+void print_result(char *buffer, int length){
+    buffer[length] = '\0';
+    printf("%s", buffer);
 }
 
