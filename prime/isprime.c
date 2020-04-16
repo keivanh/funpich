@@ -1,7 +1,7 @@
 #include "primes.h"
 //#include <time.h>
 
-#define BUFFER_LENGTH 1024*64
+#define BUFFER_LENGTH 1024*128
 
 int main(int argc, char *argv[]){
   //  clock_t begin = clock();
@@ -38,13 +38,13 @@ int main(int argc, char *argv[]){
 char isprime(int num){
     // Test if number is divisible by 2
     // This must catch half of the numbers (statistically! depends on input distribution)
-    if(!(num & 1) ){
+    if(!(num & 1)){
         return num == 2 ? '1':'0';
     }
     
     int search_up_to = (int)sqrt(num);
-    int search_index = 0;
-    int c_prime_number = primes[search_index];
+    int search_index = 1;
+    int c_prime_number = 3;
 
     while(c_prime_number <= search_up_to && c_prime_number != num){
         if(num % primes[search_index] == 0){
