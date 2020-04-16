@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define TOTAL_PRIMES_TO_CHECK_31BIT_INT 4793
 
-char isprime(int num);
-void print_result(char *buffer, int length);
+static inline char isprime(int num);
+
+int search_up_to;
+int *c_prime_number;
 
 static int primes[TOTAL_PRIMES_TO_CHECK_31BIT_INT] = {2,3,5,7,11,13,17,19,23,29,
 31,37,41,43,47,53,59,61,67,71,
